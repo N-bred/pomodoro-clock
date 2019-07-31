@@ -47,13 +47,13 @@ function App() {
    let [breakTime, setBreakTime] = useState(0);
    let [sessionTime, setSessionTime] = useState(0);
 
-   const addTime = (e, func) => {
+   const addTime = (e, func, time) => {
       e.preventDefault();
-      func((breakTime += 1));
+      func((time += 1));
    };
-   const substractTime = (e, func) => {
+   const substractTime = (e, func, time) => {
       e.preventDefault();
-      func((breakTime -= 1));
+      func((time -= 1));
    };
 
    return (
@@ -66,8 +66,10 @@ function App() {
                   <TitleInputContainer>Breaktime</TitleInputContainer>
 
                   <Input
-                     addTime={e => addTime(e, setBreakTime)}
-                     substractTime={e => substractTime(e, setBreakTime)}
+                     addTime={e => addTime(e, setBreakTime, breakTime)}
+                     substractTime={e =>
+                        substractTime(e, setBreakTime, breakTime)
+                     }
                      time={breakTime}
                   />
                </InputContainer>
@@ -75,8 +77,10 @@ function App() {
                <InputContainer>
                   <TitleInputContainer>Session Time</TitleInputContainer>
                   <Input
-                     addTime={e => addTime(e, setSessionTime)}
-                     substractTime={e => substractTime(e, setSessionTime)}
+                     addTime={e => addTime(e, setSessionTime, sessionTime)}
+                     substractTime={e =>
+                        substractTime(e, setSessionTime, sessionTime)
+                     }
                      time={sessionTime}
                   />
                </InputContainer>
